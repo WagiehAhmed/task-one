@@ -64,7 +64,7 @@ You can use this link to explore the API, test various endpoints, and see exampl
 
    
 2. **install dependencies**
-
+   ```bash
    run npm install
   
 3. **Set up environment variables**
@@ -72,12 +72,12 @@ You can use this link to explore the API, test various endpoints, and see exampl
    DATABASE_URL,JWT_SECRET,PORT
 
 5. **Set up the database**
-
+   ```bash
    npx prisma migrate dev --name init
    npx prisma generate
 
 7. **run application**
-
+   ```bash
    npm start
 
    
