@@ -1,0 +1,75 @@
+// This is your Prisma schema file
+datasource db {
+  provider = "mysql" // Use "postgresql" if you are using PostgreSQL
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Define the User model
+model User {
+  id           Int           @id @default(autoincrement())
+  name         String
+  email        String        @unique
+  password     String
+  posts        Post[]        // One-to-many relation with Post
+  comments     Comment[]     // One-to-many relation with Comment
+  postLikes    PostLike[]    // One-to-many relation with PostLike
+  commentLikes CommentLike[] // One-to-many relation with CommentLike
+  createdAt    DateTime      @default(now()) 
+}
+
+// Define the Post model
+model Post {
+  id        Int      @id @default(autoincrement()) // Unique ID for each post
+  title     String   // Title of the post
+  content   String   // Content of the post
+  userId    Int      // Foreign key to the User model
+  createdAt DateTime @default(now()) // Timestamp for when the post was created
+  updatedAt DateTime @updatedAt // Timestamp for when the post was last updated
+
+  user      User     @relation(fields: [userId], references: [id]) // Relation to User
+  comments  Comment[] // One-to-many relation with Comment
+  postLikes PostLike[] // One-to-many relation with PostLike 
+}
+
+// Define the Comment model
+model Comment {
+  id        Int      @id @default(autoincrement()) // Unique ID for each comment
+  content   String   // Content of the comment
+  postId    Int      // Foreign key to the Post model
+  userId    Int      // Foreign key to the User model
+  createdAt DateTime @default(now()) // Timestamp for when the comment was created
+
+  post      Post      @relation(fields: [postId], references: [id]) // Relation to Post
+  user      User      @relation(fields: [userId], references: [id]) // Relation to User
+  commentLikes CommentLike[] // One-to-many relation with CommentLike
+}
+
+// Define the PostLike model
+model PostLike {
+  id        Int      @id @default(autoincrement()) // Unique ID for each like
+  postId    Int      // Foreign key to the Post model
+  userId    Int      // Foreign key to the User model
+  createdAt DateTime @default(now()) // Timestamp for when the like was created
+
+  post      Post     @relation(fields: [postId], references: [id]) // Relation to Post
+  user      User     @relation(fields: [userId], references: [id]) // Relation to User
+
+  @@unique([postId, userId]) // A user can like a post only once
+}
+
+// Define the CommentLike model
+model CommentLike {
+  id        Int      @id @default(autoincrement()) // Unique ID for each like
+  commentId Int      // Foreign key to the Comment model
+  userId    Int      // Foreign key to the User model
+  createdAt DateTime @default(now()) // Timestamp for when the like was created
+
+  comment   Comment  @relation(fields: [commentId], references: [id]) // Relation to Comment
+  user      User     @relation(fields: [userId], references: [id]) // Relation to User
+
+  @@unique([commentId, userId]) // A user can like a comment only once
+}
