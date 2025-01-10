@@ -2,6 +2,29 @@
 back-end (task-one)
 # Blogging Platform API
 
+## introduction
+
+This project is a RESTful API designed for a blogging platform. It includes features for user authentication, CRUD operations for blog posts and comments, as well as "like" functionality for posts and comments. The API is built using **Node.js** with **Express**, **Prisma ORM**, and **JWT** for authentication.
+
+## Features
+- User authentication (signup, login, logout) using JWT.
+- CRUD operations for blog posts (create, read, update, delete).
+- CRUD operations for comments on posts.
+- "Like" functionality for posts and comments.
+- Secure endpoints with proper error handling and validation.
+
+## Setup Instructions
+
+Follow the steps below to set up the Blogging Platform API on your local machine.
+
+### Prerequisites
+
+Make sure you have the following installed:
+- **Node.js** (v16 or higher)
+- **MySQL** (or a compatible database)
+- **npm** or **yarn** (for managing dependencies)
+
+
 ## Scalability Plan
 
 To ensure the blogging platform API can handle 1 million users efficiently, we adopt a multi-faceted approach that includes database optimization, load balancing, and caching strategies. Below are the details:
@@ -27,28 +50,7 @@ The full API documentation for the Blogging Platform can be found below. It incl
 You can use this link to explore the API, test various endpoints, and see example requests and responses. It will help you understand the API's functionality and guide you in integrating with it.
 
 
-
-## setup
-
-This project is a RESTful API designed for a blogging platform. It includes features for user authentication, CRUD operations for blog posts and comments, as well as "like" functionality for posts and comments. The API is built using **Node.js** with **Express**, **Prisma ORM**, and **JWT** for authentication.
-
-## Features
-- User authentication (signup, login, logout) using JWT.
-- CRUD operations for blog posts (create, read, update, delete).
-- CRUD operations for comments on posts.
-- "Like" functionality for posts and comments.
-- Secure endpoints with proper error handling and validation.
-
-## Setup Instructions
-
-Follow the steps below to set up the Blogging Platform API on your local machine.
-
-### Prerequisites
-
-Make sure you have the following installed:
-- **Node.js** (v16 or higher)
-- **MySQL** (or a compatible database)
-- **npm** or **yarn** (for managing dependencies)
+  
 
 ### Steps to Set Up the Project
 
